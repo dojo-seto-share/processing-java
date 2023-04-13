@@ -25,7 +25,7 @@ public class Speech {
 	public void newMsg(String msg, float seconds, int size) {
 		this.msg = msg;
 		this.size = size;
-		this.removeTime = scratch.totalTimeSec + (seconds * 1000);
+		this.removeTime = scratch.totalTimeSec + seconds;
 		this.isSpeak = true;
 	}
 	

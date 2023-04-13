@@ -266,7 +266,7 @@ public abstract class Scratch extends PApplet{
 	 * @param s スプライト
 	 * @param step 歩数
 	 */
-	public void move(Sprite s, int steps) {
+	public void move(Sprite s, float steps) {
 		s.move(steps);
 	}
 	
@@ -298,8 +298,24 @@ public abstract class Scratch extends PApplet{
 	    s.goTo(x, y);
 	}
 	
+	/**
+	 * どこかの場所へ行く
+	 * @param s スプライト
+	 */
 	public void goToRandom(Sprite s) {
 		s.goToRandom();
+	}
+	
+	/**
+	 * マウスの場所へ行く
+	 * @param s スプライト
+	 */
+	public void goToMouse(Sprite s) {
+		s.goToMouse();
+	}
+	
+	public void direction(Sprite s) {
+		
 	}
 	
 	//=============================================================

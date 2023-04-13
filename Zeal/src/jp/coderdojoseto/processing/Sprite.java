@@ -27,15 +27,15 @@ public class Sprite {
 	private Speech speech = null;
 	
 	/** スプライトのX座標 */
-	public int x = 0;
+	public float x = 0;
 	/** スプライトのY座標 */
-	public int y = 0;
+	public float y = 0;
 	/** スプライトのZ座標 */
-	//public int z = 0;
+	//public float z = 0;
 	/** スプライトのサイズ(%) */
-	public int size = 100;
+	public float size = 100;
 	/** スプライトの角度 */
-	public int direction = 90;
+	public float direction = 90;
 	/** 表示する */
 	public boolean isShow = true;
 	/** 端についたら跳ね返る */
@@ -58,11 +58,11 @@ public class Sprite {
 	/** 当たり判定 */
 	private TOUCH_SCOPE touchMode = TOUCH_SCOPE.FULL;
 	/** 当たり判定幅（半分） */
-	private int touchW = 0;
+	private float touchW = 0;
 	/** 当たり判定高さ（半分） */
-	private int touchH = 0;
+	private float touchH = 0;
 	/** 当たり判定距離（半径） */
-	private int touchDistance = 0;
+	private float touchDistance = 0;
 	
 	
 	@Override
@@ -82,71 +82,19 @@ public class Sprite {
 	 * 幅：スクラッチサイズ
 	 * @return
 	 */
-	public int width() {
-		return (int)(((double)size) / 100 * currentCostume.shape.getWidth());
+	public float width() {
+		return size / 100 * currentCostume.shape.getWidth();
 	}
 	/**
 	 * 高さ：スクラッチサイズ
 	 * @return
 	 */
-	public int height() {
-		return (int)(((double)size) / 100 * currentCostume.shape.getHeight());
+	public float height() {
+		return size / 100 * currentCostume.shape.getHeight();
 	}
 	
 	
-	//============================
-	// プロパティのセッター・ゲッター
-	//============================
-	
-	/*
-	public int getX() {
-		return x;
-	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getZ() {
-		return z;
-	}
-
-	public void setZ(int z) {
-		this.z = z;
-	}
-
-	public float getSize() {
-		return size;
-	}
-
-	public void setSize(float size) {
-		this.size = size;
-	}
-
-	public int getDir() {
-		return dir;
-	}
-
-	public void setDir(int dir) {
-		this.dir = dir;
-	}
-
-	public boolean isShow() {
-		return isShow;
-	}
-
-	public void setShow(boolean isShow) {
-		this.isShow = isShow;
-	}size
-	*/
 	//======================================
 	// 管理関数
 	//======================================
@@ -219,7 +167,7 @@ public class Sprite {
 				double hy = Math.sin(hrad) * (h/2);
 				
 				// 画像回転
-				currentCostume.rotate(direction);
+				currentCostume.rotate((int)direction);
 				
 				scratch.shape(currentCostume.shape, 
 						(float)(Scale.toRealX(x) - (wx + wy)),
@@ -298,7 +246,7 @@ public class Sprite {
 	 * 歩動かす
 	 * @param step 歩数
 	 */
-	public void move(int steps) {
+	public void move(float steps) {
 		// 角度（スクラッチは、0度が90になる）
 		double rad = Math.toRadians(direction - 90);
 		// X移動距離
@@ -306,14 +254,14 @@ public class Sprite {
 		// Y移動距離
 		double yMove = steps * Math.sin(rad) * -1;
 		// 座標移動
-		move((int)Math.round(xMove), (int)Math.round(yMove));
+		move(Math.round(xMove), Math.round(yMove));
 	}
 
 	/**
 	 * 回す
 	 * @param degrees 角度
 	 */
-	public void turn(int degrees) {
+	public void turn(float degrees) {
 		// 画像を回転
 		direction(direction + degrees);
 		
@@ -324,14 +272,14 @@ public class Sprite {
 	 * @param x 移動するX座標
 	 * @param y 移動するY座標
 	 */
-	public void goTo(int x, int y) {
+	public void goTo(float x, float y) {
 		// 画面橋を上限とする
 		if(Math.abs(x) > (Scale.screenWidth + width()) / 2 ) {
-			x = (int)Math.signum(x) * (Scale.screenWidth + width()) / 2;
+			x = Math.signum(x) * (Scale.screenWidth + width()) / 2;
 		}
 		
 		if(Math.abs(y) > (Scale.screenHeight + height()) / 2 ) {
-			y = (int)Math.signum(y) * (Scale.screenHeight + height()) / 2;
+			y = Math.signum(y) * (Scale.screenHeight + height()) / 2;
 		}
 		
 		this.x = x;
@@ -342,8 +290,8 @@ public class Sprite {
 	 * どこかの場所へ行く
 	 */
 	public void goToRandom() {
-		this.x = (int)(Scale.screenWidth * (Math.random() - 0.5));
-		this.y = (int)(Scale.screenHeight * (Math.random() - 0.5));
+		this.x = (float)(Scale.screenWidth * (Math.random() - 0.5));
+		this.y = (float)(Scale.screenHeight * (Math.random() - 0.5));
 	}
 	
 	/**
@@ -358,7 +306,7 @@ public class Sprite {
 	 * 向き
 	 * @param direction
 	 */
-	public void direction(int direction) {
+	public void direction(float direction) {
 		direction =  direction % 360;
 		if(direction > 180) {
 			direction = direction - 360;
@@ -375,7 +323,7 @@ public class Sprite {
 		double my = Scale.toScratchY(scratch.mouseY);
 		
 		double rad = Math.atan(mx/my);
-		int newDirection = (int)Math.toDegrees(rad);
+		float newDirection = (int)Math.toDegrees(rad);
 		
 		if( my < 0 ) {
 			newDirection += 180;
@@ -393,18 +341,18 @@ public class Sprite {
 	 * @param moveX
 	 * @param moveY
 	 */
-	public void move(int moveX, int moveY) {
-		int newX = x + moveX;
-		int newY = y + moveY;
+	public void move(float moveX, float moveY) {
+		float newX = x + moveX;
+		float newY = y + moveY;
 		if(isOnEdgeBounce) {
 			// 半分サイズ
-			int hWidth = width()/2;
-			int hHeight = height()/2;
+			float hWidth = width()/2;
+			float hHeight = height()/2;
 			
 			
 			// X端判定
 			if( Math.abs(newX) > Scale.maxX - hWidth ){
-				int bounceX = (Scale.maxX - (hWidth + hWidth + (Math.abs(newX) - Scale.maxX)));
+				float bounceX = (Scale.maxX - (hWidth + hWidth + (Math.abs(newX) - Scale.maxX)));
 				newX = bounceX * (newX > 0 ? 1 : -1);
 				
 				// 向き反転
@@ -413,7 +361,7 @@ public class Sprite {
 
 			// Y端判定
 			if( Math.abs(newY) > Scale.maxY - hHeight ){
-				int bounceY = (Scale.maxY - (hHeight + hHeight + (Math.abs(newY) - Scale.maxY)));
+				float bounceY = (Scale.maxY - (hHeight + hHeight + (Math.abs(newY) - Scale.maxY)));
 				newY = bounceY * (newY > 0 ? 1 : -1);
 				
 				// 向き反転
@@ -461,7 +409,7 @@ public class Sprite {
 	 * 大きさをずつ変える
 	 * @param size
 	 */
-	public void changeSize(int size) {
+	public void changeSize(float size) {
 		this.size += size;
 	}
 	
@@ -469,7 +417,7 @@ public class Sprite {
 	 * 大きさを%にする。
 	 * @param size
 	 */
-	public void setSize(int size) {
+	public void setSize(float size) {
 		this.size = size;
 	}
 	
@@ -703,7 +651,7 @@ public class Sprite {
 	 * @param pointY 判定位置Y
 	 * @return
 	 */
-	private boolean touchSprite(int pointX, int pointY) {
+	private boolean touchSprite(float pointX, float pointY) {
 		boolean ret = false;
 		
 		switch(this.touchMode) {
@@ -753,7 +701,7 @@ public class Sprite {
 	 * @param width 幅
 	 * @param height 高さ
 	 */
-	public void touchRectangle(int width, int height) {
+	public void touchRectangle(float width, float height) {
 		this.touchMode = TOUCH_SCOPE.RECTANGLE;
 		this.touchW = width / 2;
 		this.touchH = height / 2;
@@ -762,7 +710,7 @@ public class Sprite {
 	 * 接触範囲を正方形にするSQUARE
 	 * @param size サイズ
 	 */
-	public void touchSquare(int size) {
+	public void touchSquare(float size) {
 		this.touchMode = TOUCH_SCOPE.SQUARE;
 		this.touchW = size / 2;
 		this.touchH = size / 2;
@@ -772,7 +720,7 @@ public class Sprite {
 	 * 接触範囲を円形にする
 	 * @param size サイズ
 	 */
-	public void touchCircle(int size) {
+	public void touchCircle(float size) {
 		this.touchMode = TOUCH_SCOPE.CIRCLE;
 		this.touchW = size / 2;
 		this.touchH = size / 2;
@@ -859,8 +807,8 @@ public class Sprite {
 	 */
 	public float distanceMouse() {
 		return (float)Math.sqrt(
-				(this.x - Scale.toScratchX(scratch.mouseX))^2 
-				+ (this.y - Scale.toScratchY(scratch.mouseY))^2); 
+				Math.pow(this.x - Scale.toScratchX(scratch.mouseX), 2)
+				+ Math.pow(this.y - Scale.toScratchY(scratch.mouseY), 2)); 
 	}
 	
 	/**
@@ -869,7 +817,9 @@ public class Sprite {
 	 * @return
 	 */
 	public float distance(Sprite s) {
-		return (float)Math.sqrt((this.x - s.x)^2 + (this.y - s.y)^2);
+		return (float)Math.sqrt(
+				Math.pow((this.x - s.x), 2) +
+				Math.pow((this.y - s.y), 2));
 	}
 	
 	// 聞いて待つ系は、マルチスレッド化対応後に考える

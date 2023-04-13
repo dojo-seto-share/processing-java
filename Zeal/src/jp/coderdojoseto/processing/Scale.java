@@ -15,19 +15,19 @@ public class Scale {
 	// スクラッチ画面Yサイズ
 	public static final int screenHeight = 360;
 	// スクラッチX上限
-	public static final int maxX = screenWidth / 2;
+	public static final float maxX = screenWidth / 2;
 	// スクラッチX下限
-	public static final int minX = maxX * -1;
+	public static final float minX = maxX * -1;
 	// スクラッチY上限
-	public static final int maxY = screenHeight / 2;
+	public static final float maxY = screenHeight / 2;
 	// スクラッチY下限
-	public static final int minY = maxY * -1;
+	public static final float minY = maxY * -1;
 	
 	// 100%時のDPI
 	public static final int standardDPI = 96;
 	
 	// 画面拡大率
-	public static final int magnification = 2; 
+	public static final float magnification = 2; 
 
 	// 画面サイズ
 	public static final Dimension realScreenSize;
@@ -46,36 +46,36 @@ public class Scale {
 	public static final float screenRate = (float)magnification  * ((float)dpi / (float)standardDPI);;
 	
 	// 中心座標X
-	public static int zeroX = (int)((screenWidth / 2) * screenRate);
+	public static float zeroX = (screenWidth / 2) * screenRate;
 	
 	// 中心座標Y
-	public static int zeroY = (int)((screenHeight / 2) * screenRate);
+	public static float zeroY = (screenHeight / 2) * screenRate;
 	
-	public static float toRealSize(int scratchSize) {
-		return (int)(scratchSize * screenRate);
+	public static float toRealSize(float scratchSize) {
+		return scratchSize * screenRate;
 	}
 	
-	public static int toScratchSize(double realSize) {
-		return (int)(realSize / screenRate);
+	public static float toScratchSize(float realSize) {
+		return realSize / screenRate;
 	}
 	
-	public static float toRealX(int scratchX) {
-		return (int)(scratchX * screenRate) + zeroX;
+	public static float toRealX(float scratchX) {
+		return scratchX * screenRate + zeroX;
 	}
 	
-	public static float toRealY(int scratchY) {
-		return (int)(scratchY * -1 * screenRate) + zeroY;
+	public static float toRealY(float scratchY) {
+		return scratchY * -1 * screenRate + zeroY;
 	}
 	
-	public static int toScratchX(double realX) {
-		return (int)((realX - zeroX) / screenRate);
+	public static float toScratchX(float realX) {
+		return (realX - zeroX) / screenRate;
 	}
 	
-	public static int toScratchY(double realY) {
-		return (int)((realY - zeroY) / screenRate * -1);
+	public static float toScratchY(float realY) {
+		return (realY - zeroY) / screenRate * -1;
 	}
 	
-	public static double toDegAngle(int direction) {
+	public static float toDegAngle(float direction) {
 		return (direction * -1) + 90;
 		//return Math.toRadians(dig);
 	}
