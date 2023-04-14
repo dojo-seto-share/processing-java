@@ -314,13 +314,101 @@ public abstract class Scratch extends PApplet{
 		s.goToMouse();
 	}
 	
-	public void direction(Sprite s) {
-		
+	/**
+	 * 向き
+	 * @param s スプライト
+	 * @param direction 角度
+	 */
+	public void direction(Sprite s, float direction) {
+		s.direction(direction);
+	}
+	
+	/**
+	 * マウスの方に向きを変える
+	 * @param s スプライト
+	 */
+	public void directionToMouse(Sprite s) {
+		s.directionToMouse();
+	}
+	
+	/**
+	 * X歩、または、Y歩動く
+	 * @param s スプライト
+	 * @param stepsX 
+	 * @param stepsY
+	 */
+	public void move(Sprite s, float stepsX, float stepsY) {
+		s.move(stepsX, stepsY);
 	}
 	
 	//=============================================================
 	// 見た目
 	//=============================================================
+	
+	/**
+	 * 大きな文字で〜と秒言う
+	 * @param s スプライト
+	 * @param message セリフ
+	 * @param seconds 秒
+	 * @param size 文字の大きさ
+	 */
+	public void say(Sprite s, String message, float seconds, int size) {
+		s.say(message, seconds);
+	}
+	
+	/**
+	 * 〜と秒言う
+	 * @param s スプライト
+	 * @param message セリフ
+	 * @param seconds 秒
+	 */
+	public void say(Sprite s, String message, float seconds) {
+		s.say(message, seconds);
+	}
+	
+	/**
+	 * 〜と言う
+	 * @param s スプライト
+	 * @param message セリフ
+	 */
+	public void say(Sprite s, String message) {
+		s.say(message);
+	}
+	
+	/**
+	 * スプライトの大きさをずつ変える
+	 * @param s スプライト
+	 * @param size サイズ
+	 */
+	public void changeSize(Sprite s, float size) {
+		s.changeSize(size);
+	}
+	
+	/**
+	 * スプライトの大きさを変える
+	 * @param s スプライト
+	 * @param size サイズ（％）
+	 */
+	public void setSize(Sprite s, float size) {
+		s.setSize(size);
+	}
+	
+	/**
+	 * スプライトを表示する
+	 * @param s スプライト
+	 */
+	public void show(Sprite s) {
+		s.show();
+	}
+	
+	/**
+	 * スプライトを隠す
+	 * @param s スプライト
+	 */
+	public void hide(Sprite s) {
+		s.hide();
+	}
+	
 	
 	/**
 	 * コスチュームを追加する
@@ -379,7 +467,7 @@ public abstract class Scratch extends PApplet{
 	/**
 	 * 後層に移動
 	 * @param s
-	 * @param layers 前に行く層
+	 * @param layers 後ろに行く層
 	 */
 	public void goBackward(Sprite s, int layers) {
 		int cur = sprites.indexOf(s);
@@ -388,6 +476,98 @@ public abstract class Scratch extends PApplet{
 		}else {
 			changeSpriteLayer(cur, cur - 1);
 		}
+	}
+	
+	/**
+	 * 次のコスチュームに変更する。
+	 * @param s スプライト
+	 */
+	public void nextCostume(Sprite s) {
+		s.nextCostume();
+	}
+	
+	/**
+	 * コスチュームを選択する
+	 * @param s スプライト
+	 * @param name コスチュームの名前
+	 */
+	public void selectCostume(Sprite s, String name) {
+		s.seletCostume(name);
+	}
+	
+	/**
+	 * コスチュームを選択する
+	 * @param s スプライト
+	 * @param no コスチュームの番号
+	 */
+	public void selectCostume(Sprite s, int no) {
+		s.seletCostume(no);
+	}
+	
+	//=============================================================
+	// 音
+	//=============================================================
+	
+	/**
+	 * 音を鳴らす
+	 * @param s スプライト
+	 */
+	public void play(Sprite s) {
+		s.play();
+	}
+	
+	/**
+	 * 音を鳴らす
+	 * @param s スプライト
+	 * @param name 音の名前
+	 */
+	public void play(Sprite s, String name) {
+		s.play(name);
+	}
+	
+	/**
+	 * 終わるまで音を鳴らす
+	 * @param s スプライト
+	 */
+	public void playUntilDone(Sprite s) {
+		s.playUntilDone();
+	}
+	
+	/**
+	 * 終わるまで音を鳴らす
+	 * @param s スプライト
+	 * @param name 音の名前
+	 */
+	public void playUntilDone(Sprite s, String name) {
+		s.playUntilDone(name);
+	}
+	
+	/**
+	 * 音量をずつ変える
+	 * @param s スプライト
+	 * @param volume 音量
+	 */
+	public void changeVolume(Sprite s, int volume) {
+		s.changeVolume(volume);
+	}
+	
+	/**
+	 *  音量をずつ変える
+	 * @param s スプライト
+	 * @param name 音の名前
+	 * @param volume 音量
+	 */
+	public void changeVolume(Sprite s, String name, int volume) {
+		s.changeVolume(name, volume);
+	}
+	
+	/**
+	 * 音量を%にする
+	 * @param s スプライト
+	 * @param volume ボリューム
+	 */
+	public void volume(Sprite s, int volume) {
+		s.volume(volume);
 	}
 	
 	//=============================================================
@@ -434,4 +614,78 @@ public abstract class Scratch extends PApplet{
 	public boolean touching(Sprite s1, Sprite s2) {
 		return s1.touching(s2);
 	}
+	
+	/**
+	 * 触れる範囲をスプライト全体にする
+	 * @param s スプライト
+	 */
+	public void touchFull(Sprite s) {
+		s.touchFull();
+	}
+	
+	/**
+	 * 触れる範囲を長方形にする
+	 * @param s スプライト
+	 * @param width 横幅
+	 * @param height 高さ
+	 */
+	public void touchRectangle(Sprite s, float width, float height) {
+		s.touchRectangle(width, height);
+	}
+	
+	/**
+	 * 触れる範囲を正方形にする
+	 * @param s スプライト 
+	 * @param size 正方形のサイズ
+	 */
+	public void touchSquare(Sprite s, float size) {
+		s.touchSquare(size);
+	}
+	
+	/**
+	 * 触れる範囲を円にする
+	 * @param s スプライト
+	 * @param size 円形のサイズ
+	 */
+	public void touchCircle(Sprite s, float size) {
+		s.touchCircle(size);
+	}
+	
+	/**
+	 * スプライトがマウスポインターに触れたかかどうか
+	 * @param s スプライト
+	 * @return マウスポインター触れた場合はTrue
+	 */
+	public boolean touchingMouse(Sprite s) {
+		return s.touchingMouse();
+	}
+	
+	/**
+	 * スプライトが端に触れたかどうか
+	 * @param s スプライト
+	 * @return 端に触れた場合はTrue
+	 */
+	public boolean touchingEdge(Sprite s) {
+		return s.touchingEdge();
+	}
+	
+	/**
+	 * スプライトからマウスまでの距離
+	 * @param s スプライト
+	 * @return マウスまでの距離
+	 */
+	public float distanceMouse(Sprite s) {
+		return s.distanceMouse();
+	}
+	
+	/**
+	 * お互いのスプライトの距離
+	 * @param s1 スプライト1
+	 * @param s2 スプライト2
+	 * @return スプライト間の距離
+	 */
+	public float distance(Sprite s1, Sprite s2) {
+		return s1.distance(s2);
+	}
+	
 }

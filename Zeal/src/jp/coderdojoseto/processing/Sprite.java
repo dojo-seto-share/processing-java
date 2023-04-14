@@ -336,6 +336,7 @@ public class Sprite {
 //		System.out.println("dir="+ direction);
 	}
 	
+	
 	/**
 	 * 位置を移動する。
 	 * @param moveX
@@ -497,6 +498,18 @@ public class Sprite {
 			currentCostume = costumeList.get(name);
 		}
 	}
+	
+	/**
+	 * コスチュームを選択する
+	 * @param no コスチュームの番号
+	 */
+	public void seletCostume(int no) {
+		if(costumeList.size() < no - 1) {
+			Costume p =  (Costume)costumeList.values().toArray()[no - 1];
+			currentCostume = p;
+		}
+	}
+	
 
 	//----------------------------------------------------------------------
 	// 音
