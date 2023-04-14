@@ -3,7 +3,7 @@ package jp.coderdojoseto.processing;
 public abstract class スクラッチ extends Scratch {
 
 	//=============================================================
-	// 時間設定関係
+	// 初期設定関係
 	//=============================================================
 	@Override
 	public void setup() {
@@ -53,12 +53,59 @@ public abstract class スクラッチ extends Scratch {
 	}
 	
 	/**
+	 * 開始してから、指定した時間の範囲に含まれるか判定する
+	 * @param 始まりの時間
+	 * @param 終わりの時間
+	 * @return
+	 */
+	public boolean 時間(float 始まりの時間, float 終わりの時間) {
+		return time(始まりの時間, 終わりの時間);
+	}
+	
+	/**
 	 * 次の時間の判定
 	 * @param 秒 次の時間
 	 * @return 時間が来たらTrue
 	 */
 	public boolean 次の時間(float 秒) {
 		return timeNext(秒);
+	}
+	
+	/**
+	 * 前回の検査時間から指定した範囲時間が経過したのかを判定する
+	 * @param 前回からの始まり時間
+	 * @param 前回からの終わり時間
+	 * @return
+	 */
+	public boolean 次の時間(float 始まりの時間, float 終わりの時間) {
+		return timeNext(始まりの時間, 終わりの時間);
+	}
+	
+	/**
+	 * 開始してからの時間（秒）
+	 * @return　開始してからの時間（秒）
+	 */
+	public float 経過時間() {
+		return totalTimeSec;
+	}
+	
+	//=============================================================
+	// Processing関係
+	//=============================================================
+	
+	/**
+	 * 文字を表示する
+	 * @param 文字
+	 * @param X座標
+	 * @param Y座標
+	 * @param サイズ
+	 */
+	public void 文字を書く(String 文字, float X座標, float Y座標, int サイズ) {
+		push();
+		textSize(サイズ);
+		text(文字, Scale.toRealX(X座標), Scale.toRealY(Y座標));
+		pop();
+		
 	}
 	
 	//=============================================================

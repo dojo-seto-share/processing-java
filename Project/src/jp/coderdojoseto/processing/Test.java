@@ -9,8 +9,7 @@ public class Test extends Scratch {
 	}
 
 	Sprite cat;
-	Sprite cat2;
-	String msg;
+	Sprite cake;
 	
 	/**
 	 * スプライトや背景準備
@@ -19,19 +18,16 @@ public class Test extends Scratch {
 		setStage("backdrops/Baseball 1.svg");
 		cat = createSprite("costumes/Cat/cat-a.svg");
 		addCostume(cat, "costumes/Cat/cat-b.svg");
-		cat2 = createSprite("costumes/Cake/cake-a.svg");
+		cake = createSprite("costumes/Cake/cake-a.svg");
 		cat.addSound("pon", "sounds/Pop.wav");
 		turnRight(cat, 15);
-		turnRight(cat2, 40);
-		//cat.direction(90);
 		cat.isOnEdgeBounce = true;
 		cat.rotationStyle = ROTATION_STYLE.LEFT_RIGHT;
-		cat2.isOnEdgeBounce = true;
-		cat2.say("aaaa", 10, 30);
+		cake.isOnEdgeBounce = true;
 		//textFont(loadFont("IPAexGothic-48.vlw"));
 		//msg = askAndWait("こんにちは");
 		cat.touchCircle(100);
-		cat2.touchCircle(100);
+		cake.touchCircle(100);
 
 	}
 
@@ -56,19 +52,19 @@ public class Test extends Scratch {
 		
 		//cat.directionToMouse();
 		//cat2.directionToMouse();
-		cat2.turn(12);
-		cat2.goToBack();
+		cake.turn(12);
+		cake.goToBack();
 		
 		cat.play();
 		
 		//cat2.say(msg);
 		if(timeNext(3)) {
-			cat2.say("3秒経過", 1);
+			cake.say("3秒経過", 1);
 		}
 		if(timeNext(5)) {
-			cat2.say("5秒経過", 1);
+			cake.say("5秒経過", 1);
 		}
-		if(touching(cat2, cat)) {
+		if(touching(cake, cat)) {
 			cat.say("あたった", 1);
 		}
 		
