@@ -14,7 +14,7 @@ public class サンプル extends スクラッチ {
 		猫 = スプライトを作る("costumes/Cat/cat-a.svg");
 		コスチューム追加(猫, "costumes/Cat/cat-b.svg");
 		向き(猫, 15);
-		猫.isOnEdgeBounce = true;
+		もし端についたら跳ね返る(猫);
 
 	}
 

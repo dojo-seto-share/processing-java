@@ -42,8 +42,11 @@ public class Sprite {
 	public boolean isOnEdgeBounce = false;
 	/** 回転スタイル */
 	public enum ROTATION_STYLE {
+		/** 自由に回転　*/
 		ALL_AROUND,
+		/** 左右の回転のみ　*/
 		LEFT_RIGHT,
+		/**　回転しない　*/
 		DONT_ROTATION,
 	}
 	/** 回転スタイル */

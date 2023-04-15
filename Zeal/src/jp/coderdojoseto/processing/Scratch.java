@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import jp.coderdojoseto.processing.Sprite.ROTATION_STYLE;
 import processing.core.PApplet;
 
 public abstract class Scratch extends PApplet{
@@ -340,6 +341,24 @@ public abstract class Scratch extends PApplet{
 	public void move(Sprite s, float stepsX, float stepsY) {
 		s.move(stepsX, stepsY);
 	}
+	
+	/**
+	 * 回転方法
+	 * @param s　スプライト
+	 * @param style　回転方法
+	 */
+	public void rotationStyle(Sprite s, ROTATION_STYLE style) {
+		s.rotationStyle = style;
+	}
+	
+	/**
+	 * もし端についたら跳ね返る
+	 * @param s　スプライト
+	 */
+	public void ifOnEdgeBounce(Sprite s) {
+		s.isOnEdgeBounce = true;
+	}
+
 	
 	//=============================================================
 	// 見た目

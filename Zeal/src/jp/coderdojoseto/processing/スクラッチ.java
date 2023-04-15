@@ -1,5 +1,7 @@
 package jp.coderdojoseto.processing;
 
+import jp.coderdojoseto.processing.Sprite.ROTATION_STYLE;
+
 public abstract class スクラッチ extends Scratch {
 
 	//=============================================================
@@ -185,14 +187,41 @@ public abstract class スクラッチ extends Scratch {
 		directionToMouse(スプライト);
 	}
 	
+	/**
+	 * 歩く
+	 * @param スプライト
+	 * @param X歩
+	 * @param Y歩
+	 */
 	public void 歩く(Sprite スプライト, float X歩, float Y歩) {
 		move(スプライト, X歩, Y歩);
 	}
+	
+	/**
+	 * 回転方法
+	 * @param スプライト
+	 * @param 方式
+	 */
+	public void 回転方法(Sprite スプライト, ROTATION_STYLE 方法) {
+		rotationStyle(スプライト, 方法);
+	}
+	
+	/**
+	 * もし端についたら跳ね返る
+	 * @param スプライト
+	 */
+	public void もし端についたら跳ね返る(Sprite スプライト) {
+		ifOnEdgeBounce(スプライト);
+	}
+
+	
 	
 	//=============================================================
 	// 見た目
 	//=============================================================
 	
+
+
 	/**
 	 * 大きな文字で〜と言う
 	 * @param スプライト
